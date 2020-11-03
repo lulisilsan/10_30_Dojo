@@ -117,7 +117,7 @@
         <!--Configurações-->
         <scene sceneID="Dmg-gd-w8O">
             <objects>
-                <viewController id="PlP-fc-b3X" customClass="ViewController" customModule="_0_30_Dojo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="PlP-fc-b3X" customClass="ViewControllerConfiguration" customModule="_0_30_Dojo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kOg-UH-eUJ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -189,7 +189,7 @@
                     </view>
                     <tabBarItem key="tabBarItem" title="Configurações" image="star.fill" catalog="system" id="3bw-Er-YFy"/>
                     <connections>
-                        <outlet property="tableViewConfiguration" destination="qpq-IN-F1L" id="FGJ-XQ-qvm"/>
+                        <outlet property="tableViewConfiguration" destination="qpq-IN-F1L" id="eKG-g6-kHE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9De-H1-N4E" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

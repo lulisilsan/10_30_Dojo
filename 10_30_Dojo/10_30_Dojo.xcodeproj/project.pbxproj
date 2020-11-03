@@ -17,6 +17,7 @@
 		9FAFDF3525504C7600C8C3DC /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDF3425504C7600C8C3DC /* ItemCell.swift */; };
 		9FAFDF3925504CA000C8C3DC /* ConfigurationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDF3825504CA000C8C3DC /* ConfigurationCell.swift */; };
 		9FAFDF3C2550590B00C8C3DC /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDF3B2550590B00C8C3DC /* Configuration.swift */; };
+		9FAFDF402551E3C600C8C3DC /* ViewControllerConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FAFDF3F2551E3C600C8C3DC /* ViewControllerConfiguration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		9FAFDF3425504C7600C8C3DC /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		9FAFDF3825504CA000C8C3DC /* ConfigurationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigurationCell.swift; sourceTree = "<group>"; };
 		9FAFDF3B2550590B00C8C3DC /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
+		9FAFDF3F2551E3C600C8C3DC /* ViewControllerConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerConfiguration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				9FAFDF19254F7D6A00C8C3DC /* AppDelegate.swift */,
 				9FAFDF1B254F7D6A00C8C3DC /* SceneDelegate.swift */,
 				9FAFDF1D254F7D6A00C8C3DC /* ViewController.swift */,
+				9FAFDF3F2551E3C600C8C3DC /* ViewControllerConfiguration.swift */,
 				9FAFDF1F254F7D6A00C8C3DC /* Main.storyboard */,
 				9FAFDF22254F7D6B00C8C3DC /* Assets.xcassets */,
 				9FAFDF24254F7D6B00C8C3DC /* LaunchScreen.storyboard */,
@@ -166,6 +169,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9FAFDF3025504C0300C8C3DC /* Item.swift in Sources */,
+				9FAFDF402551E3C600C8C3DC /* ViewControllerConfiguration.swift in Sources */,
 				9FAFDF1E254F7D6A00C8C3DC /* ViewController.swift in Sources */,
 				9FAFDF3C2550590B00C8C3DC /* Configuration.swift in Sources */,
 				9FAFDF1A254F7D6A00C8C3DC /* AppDelegate.swift in Sources */,

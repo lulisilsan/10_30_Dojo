@@ -16,6 +16,7 @@ class ViewController: UIViewController {
     var arrayItemGlobal = [Item]()
     var arrayItemOpen = [Item]()
     var arrayItemClose = [Item]()
+    var searchString: String?
 
     
     override func viewDidLoad() {
@@ -26,13 +27,13 @@ class ViewController: UIViewController {
         searchBarItem.delegate = self
         
         arrayItemGlobal.append(Item(name: "Maça", isOpen: true))
-        arrayItemGlobal.append(Item(name: "Laranja", isOpen: true))
+        arrayItemGlobal.append(Item(name: "Laranja", isOpen: false))
         arrayItemGlobal.append(Item(name: "Melancia", isOpen: true))
         arrayItemGlobal.append(Item(name: "Arroz", isOpen: true))
         arrayItemGlobal.append(Item(name: "Feijão", isOpen: true))
         arrayItemGlobal.append(Item(name: "Farinha", isOpen: false))
         arrayItemGlobal.append(Item(name: "Açucar", isOpen: false))
-        arrayItemGlobal.append(Item(name: "Sal", isOpen: false))
+        arrayItemGlobal.append(Item(name: "Sal", isOpen: true))
         arrayItemGlobal.append(Item(name: "Azeite", isOpen: false))
         arrayItemGlobal.append(Item(name: "Macarrão", isOpen: false))
         loadData()
@@ -43,9 +44,12 @@ class ViewController: UIViewController {
     }
     
     func loadData(){
+        let dataSource = searchString == nil ? arrayItemGlobal : arrayItemGlobal.filter({ (item) -> Bool in
+            item.name.contains(searchString!)
+        })
         arrayItemOpen.removeAll()
         arrayItemClose.removeAll()
-        for item in arrayItemGlobal {
+        for item in dataSource {
             if item.isOpen == true {
                 arrayItemOpen.append(item)
             }else if item.isOpen == false {
@@ -54,6 +58,8 @@ class ViewController: UIViewController {
         }
         tableViewItem.reloadData()
     }
+    
+
     
     func addItem(item: Item){
         let itemAdd = Item(name: item.name, isOpen: true)
@@ -163,8 +169,13 @@ class ViewController: UIViewController {
 
 extension ViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-
-}
+        if searchText.isEmpty {
+            searchString = nil
+        } else {
+            searchString = searchText
+        }
+        loadData()
+    }
 
 }
 extension ViewController: UITableViewDelegate {
@@ -182,10 +193,17 @@ extension ViewController: UITableViewDelegate {
 
 extension ViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        if arrayItemOpen.count > 0 || arrayItemClose.count > 0 {
+            return 2
+        } else {
+            return 1
+        }
     }
     
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        
         var rowCount = 0
         if section == 0 {
             rowCount = arrayItemOpen.count
@@ -193,22 +211,34 @@ extension ViewController: UITableViewDataSource {
         if section == 1 {
             rowCount = arrayItemClose.count
         }
+        if rowCount == 0 {
+            tableView.setEmptyMessage("Nenhum item encontrado")
+        } else {
+            tableView.restore()
+        }
         return rowCount
     }
     
+    
+    
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        switch section {
-        case 0:
-            return "Abertos"
-        case 1:
-            return "Concluídos"
-        default:
+        if tableView.numberOfSections > 1 {
+            switch section {
+                case 0:
+                  return "Abertos"
+                case 1:
+                  return "Concluídos"
+                default:
+                  return nil
+             }
+        } else {
             return nil
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellItem = tableView.dequeueReusableCell(withIdentifier: "ItemCell") as! ItemCell
+        cellItem.accessoryType = .disclosureIndicator
         if indexPath.section == 0 {
             cellItem.setup(item: arrayItemOpen[indexPath.row])
         } else {
@@ -218,6 +248,26 @@ extension ViewController: UITableViewDataSource {
     }
     
     
+}
+extension UITableView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0
+        messageLabel.textAlignment = .center
+        messageLabel.font = UIFont(name: "TrebuchetMS", size: 15)
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel
+        self.separatorStyle = .none
+    }
+
+    func restore() {
+        self.backgroundView = nil
+        self.separatorStyle = .singleLine
+    }
 }
 
 
